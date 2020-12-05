@@ -25,9 +25,11 @@ declare module 'discord-akairo' {
         public constructor(options?: AkairoOptions & ClientOptions, clientOptions?: ClientOptions);
 
         public ownerID: Snowflake | Snowflake[];
+        public developerID: Snowflake | Snowflake[];
         public util: ClientUtil;
 
         public isOwner(user: UserResolvable): boolean;
+        public isDeveloper(user: UserResolvable): boolean;
     }
 
     export class AkairoHandler extends EventEmitter {
@@ -169,6 +171,7 @@ declare module 'discord-akairo' {
         public ignoreCooldown?: Snowflake | Snowflake[] | IgnoreCheckPredicate;
         public ignorePermissions?: Snowflake | Snowflake[] | IgnoreCheckPredicate;
         public ownerOnly: boolean;
+        public developerOnly: boolean;
         public prefix?: string | string[] | PrefixSupplier;
         public ratelimit: number;
         public regex: RegExp | RegexSupplier;
@@ -487,6 +490,10 @@ declare module 'discord-akairo' {
         ownerID?: Snowflake | Snowflake[];
     }
 
+    export interface AkairoOptions {
+        developerID?: Snowflake | Snowflake[];
+    }
+
     export interface DefaultArgumentOptions {
         prompt?: ArgumentPromptOptions;
         otherwise?: StringResolvable | MessageOptions | MessageAdditions | OtherwiseContentSupplier;
@@ -561,6 +568,7 @@ declare module 'discord-akairo' {
         lock?: KeySupplier | 'guild' | 'channel' | 'user';
         optionFlags?: string[];
         ownerOnly?: boolean;
+        developerOnly?: boolean;
         prefix?: string | string[] | PrefixSupplier;
         ratelimit?: number;
         regex?: RegExp | RegexSupplier;
@@ -780,6 +788,7 @@ declare module 'discord-akairo' {
             CLIENT: 'client';
             BOT: 'bot';
             OWNER: 'owner';
+            DEVELOPER: 'developer';
             GUILD: 'guild';
             DM: 'dm';
         };

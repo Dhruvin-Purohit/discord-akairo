@@ -610,6 +610,14 @@ class CommandHandler extends AkairoHandler {
                 return true;
             }
         }
+        
+        if (command.developerOnly) {
+            const isDeveloper = this.client.isDeveloper(message.author);
+            if (!isDeveloper) {
+                this.emit(CommandHandlerEvents.COMMAND_BLOCKED, message, command, BuiltInReasons.DEVELOPER);
+                return true;
+            }
+        }
 
         if (command.channel === 'guild' && !message.guild) {
             this.emit(CommandHandlerEvents.COMMAND_BLOCKED, message, command, BuiltInReasons.GUILD);

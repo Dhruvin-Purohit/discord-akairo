@@ -80,6 +80,7 @@ module.exports = {
         CLIENT: 'client',
         BOT: 'bot',
         OWNER: 'owner',
+        DEVELOPER: 'developer',
         GUILD: 'guild',
         DM: 'dm'
     }

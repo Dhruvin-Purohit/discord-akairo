@@ -50,10 +50,10 @@ class AkairoClient extends Client {
      * @returns {boolean}
      */
     isDeveloper(user) {
-        const id = this.user.resolveID(user)
-        return Array.isArray(this.developerID)
-        ? this.developerID.includes(id) || this.ownerID.includes(id)
-        : id === this.developerID || this.ownerID
+        if (this.isOwner(user.id)) return true;
+        if (Array.isArray(this.developerID) && this.developerID.includes(user.id)) return true;
+        else if (user.id === this.developerID) return true;
+        else return false;
     }
 }
 

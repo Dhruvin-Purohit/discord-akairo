@@ -259,7 +259,7 @@ class Argument {
                 const startText = await getText(promptType, prompter, retryCount, prevMessage, prevInput, prevParsed);
 
                 if (startText) {
-                    sentStart = await (message.util || message.channel).send(startText);
+                    sentStart = await (message.util || message).reply(startText);
                     if (message.util) {
                         message.util.setEditable(false);
                         message.util.setLastResponse(sentStart);

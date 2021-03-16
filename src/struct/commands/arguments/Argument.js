@@ -151,7 +151,7 @@ class Argument {
             }
 
             if (text) {
-                const sent = await message.channel.send(text);
+                const sent = await message.reply(text);
                 if (message.util) message.util.addMessage(sent);
             }
 
@@ -259,7 +259,7 @@ class Argument {
                 const startText = await getText(promptType, prompter, retryCount, prevMessage, prevInput, prevParsed);
 
                 if (startText) {
-                    sentStart = await (message.util || message.channel).send(startText);
+                    sentStart = await (message.util || message).reply(startText);
                     if (message.util) {
                         message.util.setEditable(false);
                         message.util.setLastResponse(sentStart);
@@ -280,7 +280,7 @@ class Argument {
             } catch (err) {
                 const timeoutText = await getText('timeout', promptOptions.timeout, retryCount, prevMessage, prevInput, '');
                 if (timeoutText) {
-                    const sentTimeout = await message.channel.send(timeoutText);
+                    const sentTimeout = await message.reply(timeoutText);
                     if (message.util) message.util.addMessage(sentTimeout);
                 }
 
@@ -295,7 +295,7 @@ class Argument {
             if (input.content.toLowerCase() === promptOptions.cancelWord.toLowerCase()) {
                 const cancelText = await getText('cancel', promptOptions.cancel, retryCount, input, input.content, 'cancel');
                 if (cancelText) {
-                    const sentCancel = await message.channel.send(cancelText);
+                    const sentCancel = await message.reply(cancelText);
                     if (message.util) message.util.addMessage(sentCancel);
                 }
 
@@ -315,7 +315,7 @@ class Argument {
 
                 const endedText = await getText('ended', promptOptions.ended, retryCount, input, input.content, 'stop');
                 if (endedText) {
-                    const sentEnded = await message.channel.send(endedText);
+                    const sentEnded = await message.reply(endedText);
                     if (message.util) message.util.addMessage(sentEnded);
                 }
 
